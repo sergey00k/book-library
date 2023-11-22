@@ -26,6 +26,7 @@ def add_author():
 
             db.session.add(new_author)
             db.session.commit()
+            db.session.close()
         except Exception as e:
             return render_template('error.html',header=e, error=e)
         return render_template('success.html')
@@ -53,11 +54,14 @@ def add_book():
             with current_app.app_context():
                 author_instance = data_models.Author.query.get(int(author))
             new_book = data_models.Book(title=title, publication_year=publication_year, isbn=isbn, author=author_instance, cover_url=str(content['items'][0]['volumeInfo']['imageLinks']['thumbnail']))
-
-            db.session.add(new_book)
-
-            db.session.commit()
-            return render_template('success.html')
+            try:
+                db.session.add(new_book)
+                db.session.commit()
+                db.session.close()
+                return render_template('success.html')
+            except Exception as error:
+                db.session.rollback()
+                return render_template('error.html', header='add book error', error=f'Sorry, the following error occured while adding the book... {error}')
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():

@@ -1,7 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
-from app import app
-
-db = SQLAlchemy()
+from app import app, db
 
 class Author(db.Model):
     __tablename__ = 'authors'
@@ -30,6 +27,7 @@ def get_all_books():
         author_row = db.session.query(Author).filter(Author.author_id == row.author_id).one()
         author_name = author_row.name
         books[row.book_id] = {'image_url': row.cover_url, 'title': row.title, 'author': author_name, 'publication_year': row.publication_year}
+    db.session.close()
     return books
     
 
@@ -39,12 +37,14 @@ def get_all_authors():
     for row in authors_table:
         author = {row.author_id: row.name}
         authors.append(author)
+    db.session.close()
     return authors
 
 def delete_book(book_id):
     row_to_delete = db.session.query(Book).get(book_id)
     db.session.delete(row_to_delete)
     db.session.commit()
+    db.session.close()
 
 with app.app_context():
    db.create_all()
