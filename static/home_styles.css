@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "inter", sans-serif;
+}
+
+.header {
+    justify-content: space-between;
+    display: flex;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin-bottom: 80px;
+    height: 100px;
+}
+
+.title {
+    color: gold;
+    align-self: center;
+}
+
+.hometext {
+    text-align: center;
+    color: black;
+    margin-bottom: 80px;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-field {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+}
+
+.form-text {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.button {
+    padding: 8px 16px;
+    background-color: gold;
+    color: #000;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#add-book {
+    height: 32px;
+    border-radius: 4px;
+}
+
+.header-right {
+    width: 580px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.book {
+    background-color: #F5F5F5;
+    border: 3px solid #DDD;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    margin-left: 15px;
+    margin-right: 15px;
+    color: #000;
+    justify-content: space-between;
+}
+
+.books {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.image {
+    height: 100px;
+    width: 65px;
+}
+
+.book h2 {
+    margin-top: 0;
+    padding-top: 10px;
+    align-self: left;
+    margin-bottom: 10px;
+}
+
+.image {
+    height: 400px;
+    width: 240px;
+}
+
+.minibutton {
+    text-decoration: none;
+    padding: 7px;
+    background-clip: padding-box;
+    border-color: #333;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 25px;
+    color: black;
+}
+
+.delete {
+    font-size: small;
+    background-color: red;
+}
+
+#released {
+    margin-bottom: 20px;
+}
+
+.title {
+    margin-bottom: 10px;
+}

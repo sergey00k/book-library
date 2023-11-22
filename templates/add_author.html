@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='add_page_styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+  <form action="/add_author" method="POST">
+  <label class="form-text" for="name">Author Name:</label> 
+  <input class="form-field" type="text" id="name" name="name" required><br><br>
+  
+  <label class="form-text" for="birth_date">Birth date:</label> 
+  <input class="form-field" type="date" id="birth_date" name="birth_date" required><br><br>
+
+  <label class="form-text" for="death_date">Date of Death:</label> 
+  <input class="form-field" type="date" id="death_date" name="death_date"><br><br>
+
+  <input class="submit" type="submit" value="Add Author"> 
+  </form>
+
+  </body>
+</html>

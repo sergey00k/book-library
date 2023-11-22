@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Library Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home_styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1 class="title">The Book Library</h1>
+        <div class="header-right">
+            <form class="form" action="/home" method="POST">
+                <label class="form-text" for="search"></label>
+                <input class="form-field" type="text" value="Search for Book by title..." id="search" name="search" required>
+                <br>
+                <input class="submit button" type="submit" value="Search">
+            </form>
+            <a id="add-book" class="button" href="{{ url_for('add_book') }}">Add book</a>
+        </div>
+    </div>
+    <h3 class="hometext">Welcome to The Book Library, feel free to add books or authors to the library,<br>or simply scroll below to see other books inside the library.
+        <br>All data is automatically
+           saved and stored inside a sql file.</h3>
+
+    <div class="books">
+        {% for book_id, book in books.items() %}
+    <div class="book">
+        <img class="image" src="{{ book['image_url'] }}" class="image">
+        <h4 class="title"><em>{{ book['title'] }}</em></h4>
+        <p>Written by {{ book['author'] }}</p>
+        <p id="released">Released in {{ book['publication_year'] }}</p>
+        <p><a class='delete minibutton' href="{{ url_for('delete_book', book_id=book_id ) }}">Delete</a></p>
+        <br>
+    </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

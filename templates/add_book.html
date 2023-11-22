@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='add_page_styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <form action="/add_book" method="POST">
+        <label class="form-text" for="title">Book title:</label> 
+        <input class="form-field" type="text" id="title" name="title" required><br><br>
+        
+        <label class="form-text" for="publication_year">Publication year:</label> 
+        <input class="form-field" type="date" id="publication_year" name="publication_year" required><br><br>
+
+        <label class="form-text" for="isbn">isbn:</label>
+        <input class="form-field" type="text" id="isbn" name="isbn">
+
+        <select id="author" name="author">
+          {% for pair in authors %}
+            {% for author_id, author_name in pair.items() %}
+              <option value="{{ author_id }}">{{ author_name }}</option>
+            {% endfor %}
+          {% endfor %}
+        </select><br>
+
+        <input class="submit" type="submit" value="Add book"> 
+        </form>
+        <a class="submit" href="{{ url_for('add_author') }}">If author is not present click here</a>
+  </body>
+</html>
