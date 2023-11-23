@@ -1,14 +1,7 @@
-from flask import Flask, request, render_template, current_app
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, request, render_template
+from data_models import db, app
 import data_models
 import requests
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/library.sqlite'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Set to True or False as per your needs
-
-db = SQLAlchemy()
-db.init_app(app)
 
 @app.route('/add_author', methods=['GET', 'POST'])
 def add_author():
@@ -51,7 +44,7 @@ def add_book():
         if 'Error' in content:
             return render_template('error.html', header='book not found', error='Sorry, the book you were looking for could not be found.')
         else:
-            with current_app.app_context():
+            with app.app_context():
                 author_instance = data_models.Author.query.get(int(author))
             new_book = data_models.Book(title=title, publication_year=publication_year, isbn=isbn, author=author_instance, cover_url=str(content['items'][0]['volumeInfo']['imageLinks']['thumbnail']))
             try:

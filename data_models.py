@@ -1,4 +1,13 @@
-from app import app, db
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/library.sqlite'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Set to True or False as per your needs
+
+db.init_app(app)
 
 class Author(db.Model):
     __tablename__ = 'authors'
